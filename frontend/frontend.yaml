@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: anog-deploy
+  labels:
+    app: anog-deploy
+spec:
+  replicas: 3
+  template:
+    spec:
+
+      volumes:
+      - name: nginx-volume
+        persisentVolumeClaim:
+          claimName: nginx-pvc
+          
+      - name: bdd-front-volume
+        persistentVolumeClaim:
+          claimName: bdd-front-pvc
+
+      containers:
+      - name: mariadb-front
+        image: beefr/mariadb-qcm:latest
+        ports:
+        - containerPort: 3306
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: pwd
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: bdd-front-volume
+
+      - name: nginx
+        image: cren0/nginxflask:latest
+        imagePullPolicy: Never
+        ports:
+        - name: front-port
+          containerPort: 8080
+        volumeMounts:
+        - mountPath: /app/OnePiece
+          name: nginx-volume
+
