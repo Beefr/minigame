@@ -8,14 +8,13 @@ import pathlib
 print(pathlib.Path(__file__).parent.resolve())
 
 
-import sys
-sys.path.insert(1, 'OnePiece/workspace/python-pipeline/')
+#import sys
+#sys.path.insert(1, 'OnePiece/workspace/python-pipeline/')
 
 from interactBDD import InteractBDD
 from user import User, Anonymous
-from utils import Utils
 
-from forms import LoginForm, IndexForm
+from forms import LoginForm, IndexForm, RegisterForm
 
 login_manager = LoginManager()
 login_manager.anonymous_user = Anonymous
@@ -34,6 +33,13 @@ login_manager.init_app(app)
 
 @app.route("/handle_data", methods=['GET', 'POST'])
 def handle_data():
+    if "password2" in request.form:
+        if sanitization([request.form['username'], request.form['password1'], request.form['password2']]):
+            exists=InteractBDD.existInDB(request.form['username'])
+            if not exists:
+                if request.form['password1'] == request.form['password2']:
+                    InteractBDD.createUser(request.form['username'], hashPassword(request.form['password1']))
+
     if "username" in request.form:
         checkPassword(request.form['username'], request.form['password'])
 
@@ -55,8 +61,8 @@ def menu(username, user_input="None"):
 
 def checkPassword(username, password):
     print(datetime.now().strftime("%H:%M:%S")+" Tentative de connexion sur le compte: "+str(username))
-    if Utils.sanitization([username, password]):
-        password=Utils.hashPassword(password)
+    if sanitization([username, password]):
+        password=hashPassword(password)
         if InteractBDD.existInDB(username):
             if not InteractBDD.checkPassword(username, password):
                 return False
@@ -108,6 +114,17 @@ def login():
  
     return render_template('login.html', form=LoginForm())
 
+@app.route("/register/", methods=['GET','POST'])
+def register():
+    if current_user.is_authenticated: # redirection in case the user modified the url path to login
+        user_input="None"
+        if "user_input" in request.form:
+            user_input= request.form["user_input"]
+        return redirect(url_for('menu', username=current_user.username, user_input=user_input))
+
+ 
+    return render_template('register.html', form=RegisterForm())
+
 
 
 @app.route("/logout")
@@ -132,7 +149,30 @@ def load_user(id):
     return user
 
 
+def sanitization(user_input):
+    forbiddenCharacters=["'", "\"", "\\", "&", "~", "{", "(", "[", "-", "|", "`", "_", "ç", "^", "à", "@", ")", "]", "=", "}", "+", "$", "£", "¤", "*", "µ", "ù", "%", "!", "§", ":", "/", ";", ".", ",", "?", "<", ">", "²"]
+    if len(user_input)==0 or user_input=="": # empty input
+        return False
 
+    for elem in user_input:
+        if len(elem)>=40: # max 15 characters
+            return False
+            
+        for char in forbiddenCharacters: # no special characters
+            if char in elem:
+                return False
+    return True
+
+
+    
+def hashPassword(password):
+    # https://docs.python.org/fr/3/library/hashlib.html
+    password=hashlib.blake2b(password.encode('utf-8')).hexdigest()
+    try:
+        password=password[0:240]
+    except:
+        pass
+    return password
 
 
 if __name__ == "__main__":
