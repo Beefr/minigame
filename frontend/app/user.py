@@ -1,23 +1,19 @@
 
 from interactBDD import InteractBDD
-from joueur import Joueur
-from menu import Menu
+#from joueur import Joueur
+#from menu import Menu
 from flask_login import UserMixin, AnonymousUserMixin
 
 class User(UserMixin):
 
-    def __init__(self, username, password=None):
+    def __init__(self, username):
         self._is_authenticated=True
         self._is_active=True # on y touche pas
         self._is_anonymous=False 
-        self._menu= Menu()
+        #self._menu= Menu()
         self._username=username
-
-        if password!=None:
-            InteractBDD.createUser(username, password) 
-
-        joueur = Joueur(username)
-        self._menu.joueur = joueur
+        #joueur = Joueur(username)
+        #self._menu.joueur = joueur
         self._id= None
 
     @property

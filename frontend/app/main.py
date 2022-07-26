@@ -7,6 +7,7 @@ from flask_login import LoginManager,  login_required, current_user, login_user,
 import pathlib
 print(pathlib.Path(__file__).parent.resolve())
 
+import hashlib
 
 #import sys
 #sys.path.insert(1, 'OnePiece/workspace/python-pipeline/')
@@ -63,18 +64,13 @@ def checkPassword(username, password):
     print(datetime.now().strftime("%H:%M:%S")+" Tentative de connexion sur le compte: "+str(username))
     if sanitization([username, password]):
         password=hashPassword(password)
-        if InteractBDD.existInDB(username):
-            if not InteractBDD.checkPassword(username, password):
-                return False
-            else:
-                user = User(username)
-                login_user(user)
-                return True
-        
-        print("Connexion réussie: "+str(username))
-        user = User(username, password)
-        login_user(user)
-        return True
+        if InteractBDD.existInDB(username) and InteractBDD.checkPassword(username, password):
+            user = User(username)
+            login_user(user)
+            print("Connexion réussie: "+str(username))
+            return True
+                
+        return False
 
             
 @app.errorhandler(404)
