@@ -1,6 +1,2 @@
-Flask
-Flask-WTF
-flask_login
-flask-ext
 numpy
 mariadb
