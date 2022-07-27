@@ -2,4 +2,4 @@
 
 
 
-frontend/intermediateImage.sh
+./frontend/intermediateImage.sh
