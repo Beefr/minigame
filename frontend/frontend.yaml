@@ -6,6 +6,10 @@ metadata:
     app: front-deploy
 spec:
   replicas: 3
+  selector: 
+    matchLabels:
+      app: mariadb-front
+      app: nginx
   template:
     spec:
 
