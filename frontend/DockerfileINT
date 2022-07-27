@@ -4,7 +4,6 @@ FROM python:latest
 
 
 WORKDIR /app
-COPY ./app/requirement.txt /app
 
 # python3.9
 RUN apt update 
