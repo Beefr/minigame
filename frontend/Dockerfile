@@ -1,5 +1,5 @@
 
-FROM cren0/nginxflask:latest
+FROM frontend:latest
 
 WORKDIR /app
 COPY ./miniGame/app /app
