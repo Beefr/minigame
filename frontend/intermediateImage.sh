@@ -1,4 +1,4 @@
 #!bin/bash
 
 
-minikube image build -t frontend:latest -f frontend/DockerfileINT .
+minikube image build -t nginxflask-frontend:latest -f frontend/DockerfileINT .
