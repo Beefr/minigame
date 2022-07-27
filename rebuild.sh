@@ -21,8 +21,8 @@
 #minikube image build -t anog:latest -f ./Dockerfile .
 #bash start.sh
 
-kubectl delete pod nginx
-kubectl apply -f application.yaml
+#kubectl delete pod nginx
+#kubectl apply -f application.yaml
 
 
 
