@@ -4,7 +4,7 @@ FROM python:latest
 
 
 WORKDIR /app
-COPY .frontend/app/requirement.txt /app
+COPY ./frontend/app/requirement.txt /app
 
 # python3.9
 RUN apt update 
