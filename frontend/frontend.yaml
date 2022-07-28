@@ -12,6 +12,17 @@ spec:
       app: nginx
   template:
     spec:
+
+      volumes:
+      - name: bdd-front-volume
+        persistentVolumeClaim:
+          claimName: bdd-front-pvc
+
+      - name: nginx-volume
+        persisentVolumeClaim:
+          claimName: nginx-pvc
+
+
       containers:
       - name: mariadb-front
         image: beefr/mariadb-qcm:latest
@@ -34,11 +45,3 @@ spec:
         - mountPath: /app/OnePiece
           name: nginx-volume
 
-      volumes:
-      - name: bdd-front-volume
-        persistentVolumeClaim:
-          claimName: bdd-front-pvc
-
-      - name: nginx-volume
-        persisentVolumeClaim:
-          claimName: nginx-pvc
