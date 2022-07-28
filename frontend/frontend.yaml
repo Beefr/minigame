@@ -13,16 +13,17 @@ spec:
   template:
     spec:
 
-      volumes:
-      - name: nginx-volume
-        persisentVolumeClaim:
-          claimName: nginx-pvc
-          
+      containers:
+
       - name: bdd-front-volume
         persistentVolumeClaim:
           claimName: bdd-front-pvc
 
-      containers:
+      - name: nginx-volume
+        persisentVolumeClaim:
+          claimName: nginx-pvc
+
+
       - name: mariadb-front
         image: beefr/mariadb-qcm:latest
         ports:
