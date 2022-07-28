@@ -13,8 +13,7 @@ spec:
   template:
     spec:
 
-      containers:
-
+      volumes:
       - name: bdd-front-volume
         persistentVolumeClaim:
           claimName: bdd-front-pvc
@@ -24,6 +23,7 @@ spec:
           claimName: nginx-pvc
 
 
+      containers:
       - name: mariadb-front
         image: beefr/mariadb-qcm:latest
         ports:
