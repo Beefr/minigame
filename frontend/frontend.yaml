@@ -2,15 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front-deploy
-  labels:
-    app: nginx
-    app: mariadb-front
 spec:
   replicas: 3
   selector: 
     matchLabels:
-      app: mariadb-front
       app: nginx
+      app: mariadb-front
   template:
     spec:
 
