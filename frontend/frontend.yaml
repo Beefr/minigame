@@ -19,7 +19,7 @@ spec:
           claimName: bdd-front-pvc
 
       - name: nginx-volume
-        persisentVolumeClaim:
+        persistentVolumeClaim:
           claimName: nginx-pvc
 
 
