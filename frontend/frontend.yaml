@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   name: front-deploy
   labels:
-    app: front-deploy
+    app: nginx
+    app: mariadb-front
 spec:
   replicas: 3
   selector: 
