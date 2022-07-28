@@ -9,6 +9,10 @@ spec:
       app: nginx
       app: mariadb-front
   template:
+    metadata:
+      labels:
+        app: nginx
+        app: mariadb-front
     spec:
 
       volumes:
