@@ -1,8 +1,8 @@
 
-FROM cren0/nginxflask:latest
+FROM nginxflask-frontend:latest
 
 WORKDIR /app
-COPY ./miniGame/app /app
+COPY ./app /app
 
 CMD ["python", "/app/main.py"]
 
