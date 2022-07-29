@@ -9,21 +9,15 @@ spec:
   selector:
     app: anog
   ports:
-    - name: back-port
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
-      nodePort: 30038
-    - name: front-back-port
-      port: 8081
-      protocol: TCP
-      targetPort: 8081
-      nodePort: 30037
-    - name: tcp-mysql-back
-      port: 3306
-      targetPort: 3306
-      protocol: TCP
+  - protocol: TCP
+    port: 8080
+    targetPort: http
 
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
+    name: tcp-mysql-back
+    
 ---
 
 apiVersion: v1

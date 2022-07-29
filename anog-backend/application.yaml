@@ -36,11 +36,11 @@ spec:
         - mountPath: /var/lib/mysql
           name: bdd-anog-volume
 
-      - name: anog-cont
+      - name: anog
         image: anog:latest
         imagePullPolicy: Never
         ports:
-         - name: python-port
+         - name: front-back
            containerPort: 8080
         volumeMounts:
         - mountPath: /app/OnePiece

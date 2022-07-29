@@ -1,6 +1,6 @@
 
 
-FROM python:latest
+FROM nginx:latest
 
 
 WORKDIR /app

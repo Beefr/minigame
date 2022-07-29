@@ -40,9 +40,6 @@ spec:
       - name: nginx
         image: frontend:latest
         imagePullPolicy: Never
-        ports:
-        - name: front-port
-          containerPort: 8080
         volumeMounts:
         - mountPath: /app/OnePiece
           name: nginx-volume
