@@ -1,5 +1,5 @@
 
-FROM nginxflask-frontend:latest
+FROM python-backend:latest
 
 WORKDIR /app
 COPY ./app /app
