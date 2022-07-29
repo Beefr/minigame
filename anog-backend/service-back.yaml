@@ -12,12 +12,13 @@ spec:
   - protocol: TCP
     port: 8080
     targetPort: http
+    name: http
 
   - protocol: TCP
     port: 3306
     targetPort: 3306
     name: tcp-mysql-back
-    
+
 ---
 
 apiVersion: v1
