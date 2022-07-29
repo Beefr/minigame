@@ -13,7 +13,7 @@ spec:
       port: 8080
       protocol: TCP
       targetPort: 8080
-      nodePort: 30036
+      nodePort: 30038
     - name: front-back-port
       port: 8081
       protocol: TCP
