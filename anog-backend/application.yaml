@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: anog
       app: mariadb-anog
-template:
+  template:
     metadata:
       labels:
         app: anog
