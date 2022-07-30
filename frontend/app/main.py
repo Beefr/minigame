@@ -10,6 +10,7 @@ print(pathlib.Path(__file__).parent.resolve())
 import hashlib
 
 import requests
+from requests.structures import CaseInsensitiveDict
 
 #import sys
 #sys.path.insert(1, 'OnePiece/workspace/python-pipeline/')
@@ -58,7 +59,9 @@ def handle_data():
 @app.route("/menu/<username>/<user_input>", methods=['GET','POST'])
 @login_required
 def menu(username, user_input="None"):
-    output = current_user.menu.showMenu(user_input)
+
+    #output = current_user.menu.showMenu(user_input)
+    output = {"team": {"myMessage": ["bernard"] }, "content":{"myMessage": ["contenu"] }, "map": {"myMessage": ["ile"] }}
     return render_template('index.html', output=output, form=IndexForm(), username=username)
     
 
