@@ -12,13 +12,13 @@ kubectl delete svc mariadb-anog
 kubectl delete svc anog
 
 
-kubectl delete pvc nginx-pvc
-kubectl delete pvc bdd-front-pvc
-kubectl delete pvc bdd-anog-pvc
-kubectl delete pvc anog-pvc
+#kubectl delete pvc nginx-pvc
+#kubectl delete pvc bdd-front-pvc
+#kubectl delete pvc bdd-anog-pvc
+#kubectl delete pvc anog-pvc
 
 
-kubectl delete pv nginx-volume
-kubectl delete pv bdd-front-volume
-kubectl delete pv bdd-anog-volume
-kubectl delete pv anog-volume
+#kubectl delete pv nginx-volume
+#kubectl delete pv bdd-front-volume
+#kubectl delete pv bdd-anog-volume
+#kubectl delete pv anog-volume
