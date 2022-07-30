@@ -9,6 +9,8 @@ print(pathlib.Path(__file__).parent.resolve())
 
 import hashlib
 
+import requests
+
 #import sys
 #sys.path.insert(1, 'OnePiece/workspace/python-pipeline/')
 
